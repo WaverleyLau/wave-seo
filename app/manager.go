@@ -15,7 +15,7 @@ func InitConfig(path ...string) *viper.Viper {
 	var config string
 
 	if len(path) == 0 {
-		flag.StringVar(&config, "c", "", "config file path")
+		flag.StringVar(&config, "f", "", "config file path")
 		flag.Parse()
 		if config == "" { // 判断命令行参数是否为空
 			if configEnv := os.Getenv(global.ConfigEnv); configEnv == "" { // 判断 internal.ConfigEnv 常量存储的环境变量是否为空
