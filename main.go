@@ -19,5 +19,6 @@ func main() {
 	r := gin.Default()
 	r.GET("/ping", pong)
 	r.POST("/api/v1/login", user.Login)
+	r.POST("/api/v1/register", user.Register)
 	r.Run(fmt.Sprintf(":%s", global.WAVE_CONFIG.Server.Port)) // listen and serve on 0.0.0.0:8080
 }
