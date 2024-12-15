@@ -30,9 +30,6 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "login successful"})
-	return
-
 }
 
 func Register(c *gin.Context) {
