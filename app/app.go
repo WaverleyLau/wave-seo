@@ -9,5 +9,6 @@ func InitApp() {
 
 func InitGlobal() {
 	global.WAVE_VP = InitConfig()
+	global.Init()
 
 }

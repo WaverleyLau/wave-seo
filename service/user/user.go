@@ -17,6 +17,12 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 	fmt.Printf("%v", login)
+
+	err := global.WAVE_VALIDATE.Struct(login)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"msg": err.Error()})
+		return
+	}
 	if password, ok := global.USER_CACHE[login.Username]; ok {
 		if password == login.Password {
 			c.JSON(http.StatusOK, gin.H{"message": "login successful"})
@@ -41,6 +47,12 @@ func Register(c *gin.Context) {
 	var user model.User
 	if err := c.ShouldBind(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	err := global.WAVE_VALIDATE.Struct(user)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"msg": err.Error()})
 		return
 	}
 
